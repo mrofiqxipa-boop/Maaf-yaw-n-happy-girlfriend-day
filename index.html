@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special for My Girl ❤️</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; color: #4a4a4a; position: relative; overflow-x: hidden; }
+        
+        /* Hiasan Floating */
+        .decoration { position: fixed; font-size: 3rem; user-select: none; z-index: 1; animation: float 4s ease-in-out infinite; }
+        .flower-1 { top: 3%; left: 4%; font-size: 3.5rem; }
+        .flower-2 { bottom: 4%; right: 4%; font-size: 3.8rem; }
+        .butterfly-1 { top: 20%; left: 8%; animation-delay: 1s; font-size: 3.2rem; }
+        .butterfly-2 { bottom: 15%; right: 5%; animation-delay: 2s; font-size: 3.5rem; }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(8deg); } }
+
+        .container { background: rgba(255, 255, 255, 0.95); padding: 28px 22px; border-radius: 24px; box-shadow: 0 12px 35px rgba(238, 156, 167, 0.4); text-align: center; max-width: 420px; width: 100%; position: relative; z-index: 10; border: 2px solid #ffb6c1; }
+        .page { display: none; animation: fadeIn 0.5s ease forwards; }
+        .page.active { display: block; }
+
+        h1 { color: #d81b60; font-size: 1.6rem; margin-bottom: 12px; font-weight: 700; }
+        p { font-size: 0.95rem; line-height: 1.6; color: #555; margin-bottom: 15px; }
+        
+        /* Input & Button */
+        input[type="password"] { width: 80%; padding: 12px; border: 2px solid #ff8fa3; border-radius: 20px; outline: none; text-align: center; font-size: 1rem; margin-bottom: 15px; }
+        button { background: linear-gradient(135deg, #ff4d6d, #ff758f); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 0.95rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 77, 109, 0.35); transition: all 0.3s ease; }
+        button:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(255, 77, 109, 0.45); }
+        
+        .btn-group { display: flex; justify-content: space-between; margin-top: 20px; gap: 10px; }
+        .btn-group button { flex: 1; }
+        .btn-group button:disabled { background: #e0e0e0; color: #a0a0a0; cursor: not-allowed; box-shadow: none; transform: none; }
+
+        /* Styling Foto */
+        .photo-card { background: #fff0f3; padding: 10px; border-radius: 16px; border: 1px solid #ffccd5; margin-bottom: 15px; }
+        .single-photo { width: 100%; max-height: 280px; object-fit: cover; border-radius: 12px; }
+        
+        .message-box { background: #fff5f7; padding: 15px; border-radius: 14px; border-left: 5px solid #ff4d6d; text-align: left; margin-bottom: 15px; font-size: 0.93rem; }
+        .surprise-box { display: none; margin-top: 15px; padding: 15px; background: #ffe3e8; border-radius: 14px; color: #c2185b; font-weight: bold; border: 2px dashed #ff4d6d; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="decoration flower-1">🌸</div>
+    <div class="decoration flower-2">🌺</div>
+    <div class="decoration butterfly-1">🦋</div>
+    <div class="decoration butterfly-2">🦋</div>
+
+    <div class="container">
+        
+        <!-- HALAMAN 1: PASSWORD -->
+        <div class="page active" id="page-login">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🔒✨</div>
+            <h1>Halo Cantik!</h1>
+            <p>Masukkan kata sandi rahasia dulu yaa buat buka websitemu: </p>
+            <input type="password" id="passInput" placeholder="Ketik kata sandi...">
+            <br>
+            <button onclick="checkPassword()">Buka Password 💖</button>
+            <p id="errorMsg" style="color: #d81b60; font-size: 0.85rem; margin-top: 10px; display: none;">Kata sandi salah beb! Coba lagi yaa 😘</p>
+        </div>
+
+        <!-- HALAMAN 2: PERTANYAAN SAYANG -->
+        <div class="page" id="page-question">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🥺❤️</div>
+            <h1>Pertanyaan Penting!</h1>
+            <p style="font-size: 1.1rem; font-weight: bold; color: #d81b60;">Kamu sayang sama aku gaaa?</p>
+            <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px; position: relative; min-height: 60px;">
+                <button onclick="goToApp()" style="z-index: 2;">Sayang Banget! 🥰</button>
+                <button id="btnNo" onmouseover="moveNoBtn()" onclick="moveNoBtn()" style="background: #a0a0a0; position: absolute; right: 20px;">Gak Sayang 😜</button>
+            </div>
+        </div>
+
+        <!-- HALAMAN 3: INTRO UTAMA & FOTO 1 -->
+        <div class="page" id="page1">
+            <div style="font-size: 2rem;">🌸 🦋 🌸</div>
+            <h1>Happy Girlfriend Day Beb! ❤️</h1>
+            <div class="photo-card">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAADIAQMAAACT4599AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAADRJREFUeNpjYBgFo2AUjIJRMApGwSgYBaNgFIyCUjAKRsEoGAWjYBSMglEwCkbBKBgFowABGAABH4764gAAAABJRU5ErkJggg==" class="single-photo" alt="Foto 1">
+            </div>
+            <p>Makasih udah jawab sayang! Selamat hari National Girlfriend Day ya cantikkuuu. ❤️</p>
+            <div class="btn-group">
+                <button onclick="nextPage(2)">Berikutnya ➔</button>
+            </div>
+        </div>
+
+        <!-- HALAMAN 4: PESAN CINTA -->
+        <div class="page" id="page2">
+            <div style="font-size: 2rem;">💖 ✨ 💖</div>
+            <h1>Aku CINTA Banget Sama Kamu!</h1>
+            <div class="message-box">
+                <p><strong>Aku bener-bener sayang dan cinta banget sama kamu! 🥺❤️</strong></p>
+                <p style="margin-top: 10px;">Makasih yaa udah selalu sabar, nemenin aku, dan bikin hari-hariku indah. Kamu itu yang terbaik!</p>
+            </div>
+            <div class="btn-group">
+                <button onclick="nextPage(1)">Sebelumnya</button>
+                <button onclick="nextPage(3)">Berikutnya ➔</button>
+            </div>
+        </div>
+
+        <!-- HALAMAN 5: JANJI GARUT -->
+        <div class="page" id="page3">
+            <div style="font-size: 2rem;">📍 📸 🗺️</div>
+            <h1>Janji Kita ke Garut! ✨</h1>
+            <p>Tunggu aku yaa beb! Nanti begitu uangnya cukup, aku langsung susul kamu ke <span style="color: #d81b60; font-weight: bold;">Garut</span>! 🚗💨</p>
+            <div class="message-box">
+                <p><strong>Rencana seru kita nanti:</strong></p>
+                <ul style="margin-left: 18px; margin-top: 8px;">
+                    <li>📸 Mampir Photobooth foto bareng</li>
+                    <li>🧋 Jajan-jajan lucu sepuasnya</li>
+                    <li>🥰 Seneng-seneng bareng seharian!</li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button onclick="nextPage(2)">Sebelumnya</button>
+                <button onclick="nextPage(4)">Berikutnya ➔</button>
+            </div>
+        </div>
+
+        <!-- HALAMAN 6: KEJUTAN -->
+        <div class="page" id="page4">
+            <div style="font-size: 2rem;">🌸 🎁 🌸</div>
+            <h1>I Love You So Much! ❤️</h1>
+            <p>Klik tombol di bawah buat ambil hadiah kejutannya!</p>
+            <button onclick="toggleSurprise()">Buka Hadiah Kejutan 🎁</button>
+            <div id="surprise" class="surprise-box">
+                🎉 Tiket Janji Jalan-Jalan + Photobooth + Jajan Sepuasnya di Garut pas aku sampai sana! Ditanggung full sama aku! 😘🧋🌸
+            </div>
+            <div class="btn-group" style="margin-top: 15px;">
+                <button onclick="nextPage(3)">Sebelumnya</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Password Bawaan
+        const CORRECT_PASSWORD = "sayang"; 
+
+        function checkPassword() {
+            const input = document.getElementById('passInput').value;
+            if (input.toLowerCase() === CORRECT_PASSWORD) {
+                showPage('page-question');
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+
+        function moveNoBtn() {
+            const btn = document.getElementById('btnNo');
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 50);
+            btn.style.position = 'fixed';
+            btn.style.left = Math.max(20, Math.min(x, window.innerWidth - 120)) + 'px';
+            btn.style.top = Math.max(20, Math.min(y, window.innerHeight - 50)) + 'px';
+        }
+
+        function goToApp() {
+            showPage('page1');
+        }
+
+        function nextPage(pageNum) {
+            showPage(`page${pageNum}`);
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function toggleSurprise() {
+            const box = document.getElementById('surprise');
+            box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
